@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- important meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Basic SEO -->
+    <meta
+      name="keywords"
+      content="HTML5, CSS3, JQuery, swiper, Web Design, Web Development, Responsive website, Creative website"
+    />
+    <style>
+      .hLine {
+        height: 2px;
+        margin: 10px 0;
+        background-color: red;
+      }
+      #yellowContainer {
+        height: 500px;
+        width: 500px;
+        background-color: yellow;
+        position: relative;
+      }
+      #animate {
+        height: 50px;
+        width: 50px;
+        background-color: red;
+        position: absolute;
+      }
+      #coinImage {
+        height: 200px;
+      }
+      #calcTitle {
+        background-color: blue;
+        font-size: 20px;
+        color: white;
+        text-align: center;
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+
+
+</br>
+    <p id="calcTitle">Basic Calculator</p>
+    <input type="number" id="numberInput1">
+    <select id="functionSelection">
+      <option value="+">Addition (+)</option>
+      <option value="-">Subtraction (-)</option>
+      <option value="*">Multiplication (x)</option>
+      <option value="/">Division (/)</option>
+    </select> 
+    <input type="number" id="numberInput2">   
+    <button onclick="getNumber()">Submit</button>
+    <p id="calcResult"><br></p>
+
+  <hr class="hLine">
+
+    <button onclick="genNumber()">Generate #</button>
+    <p id="newNumber">???</p>
+
+    <hr class="hLine">
+
+    <p id="Demo"></p>
+
+    <hr class="hLine">
+
+    <p id="DemoFac"></p>
+    <p id="DemoFac2"></p>
+
+    <hr class="hLine">
+
+    <button onclick="moveOn()">Move Box</button>
+  <br>
+  <br> 
+    <div id="yellowContainer">
+      <div id="animate"></div>
+    </div>
+
+    <hr class="hLine">
+
+    <button onclick="coinFlip()">HEAD/TAIL ?</button>
+    <br>
+    <br>
+    <img id="coinImage" class="coin" src="head.jpg" alt="Coin Image">
+
+    <script>
+
+       //Print all even numbers from 0 to 10.
+
+      function evenNumbers () {
+      var printToHTML = ""
+      for (i=2; i<=10; i+=2) {
+        printToHTML += i + " "
+        document.getElementById("Demo").textContent = printToHTML;
+      }
+    }
+      evenNumbers();
+
+
+   // Write a function to calculate the factorial of a number (method 1)
+      function getFactorial(n) {
+        if (n === 0 || n === 1) {
+        return 1;
+        } else {
+        return n * getFactorial(n - 1);
+        }
+        }
+
+      let result = getFactorial(10);
+      document.getElementById("DemoFac").textContent = result;
+
+
+   // Write a function to calculate the factorial of a number (method 2)
+
+      function getFactorial2() {
+        let result=""
+        for (i=2; i<=10; i++)
+        result = 10 * (i - 1);
+        }
+
+      document.getElementById("DemoFac2").textContent = result;
+
+
+   // Create a simple calculator that can add, subtract, multiply, and divide two numbers.
+
+      function getNumber() {
+        var inputField1 = document.getElementById("numberInput1");
+        var number1 = inputField1.value;
+
+        var textFunction = document.getElementById("functionSelection");
+        var func = textFunction.value;
+
+        var inputField2 = document.getElementById("numberInput2");
+        var number2 = inputField2.value;
+
+        a = parseFloat(number1);
+        b = func;
+        c = parseFloat(number2);
+
+        console.log("Result:", calculateResult(a, b, c));
+        document.getElementById("calcResult").textContent="Results = " + calculateResult(a, b, c);
+}
+
+      function calculateResult(a, b, c) {
+        if (b === "+") {
+          return a + c;
+        } else if (b === "-") {
+          return a - c;
+        } else if (b === "x" || b === "*") {
+          return a * c;
+        } else if (b === "/") {
+          if (c === 0) {
+            return "Error: Division by zero is not allowed.";
+          } else {
+            return a / c;
+          }
+        } else {
+          return "Invalid operator.";
+        }
+      }
+
+    //Write a program to generate a random number between 1 and 100.
+     function genNumber() {
+      var x = Math.round(Math.random() * 100);
+      document.getElementById("newNumber").textContent = x;
+     }
+
+    //Write a function to sort an array of numbers in ascending order.
+
+    let arr = ["apple", "banana", "orange", "passion fruit", "kiwi", "watermelon"];
+      function fixOrder() {
+        let sortedList = arr.sort();
+        console.log(sortedList)
+      }
+      fixOrder();
+
+
+    //Create a simple animation using JavaScript and Build a simple game.
+
+    function moveOn () {
+      let smallBox = document.getElementById("animate");
+      let pos = 0;
+      let myInterval = setInterval(frame, 5);
+        function frame(){
+          if (pos == 450) {
+            clearInterval(myInterval);
+          }
+          pos++;
+          smallBox.style.top = pos + "px";
+          smallBox.style.left = pos + "px";
+    }
+  }
+
+    //Create a simple web application that uses JavaScript to dynamically change the content of a page.
+
+    //----------Write a program to simulate a coin flip.
+
+    // Function to simulate a coin flip
+function coinFlip() {
+  var coinImage = document.getElementById('coinImage');
+
+  var delay = 500; // Delay in milliseconds between image changes
+
+  // Generate a random number between 0 and 1
+  var randomNumber = Math.random();
+
+  // Update the coin image with the appropriate picture
+  if (randomNumber < 0.5) {
+    coinImage.src = 'head.jpg';
+  } else {
+    coinImage.src = 'tail.jpg';
+  }
+
+  // Delay before displaying the result
+  setTimeout(function() {
+    console.log('The result of the coin flip is: ' + coinImage.src);
+  }, delay);
+}
+
+      // Call the flipCoin function to simulate a coin flip
+      flipCoin()
+        .then(function(resultCoin) {
+          console.log('The result of the coin flip is: ' + resultCoin);
+        })
+        .catch(function(error) {
+          console.log('An error occurred: ' + error);
+        });
+      
+    </script>
+  </body>
+</html>
